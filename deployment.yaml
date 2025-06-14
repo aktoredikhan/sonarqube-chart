@@ -1,0 +1,14 @@
+env:
+  - name: SONAR_JDBC_URL
+    value: jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/sonarqube
+  - name: SONAR_JDBC_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-postgresql
+        key: username
+  - name: SONAR_JDBC_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-postgresql
+        key: password
+
